@@ -52,8 +52,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:textSize="15sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 tools:text="Name" />
+
+            <TextView
+                android:id="@+id/newsDate"
+                android:layout_below="@+id/newsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:textSize="15sp"
+                tools:text="Date" />
+
+            <TextView
+                android:id="@+id/newsDescription"
+                android:layout_below="@+id/newsDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textSize="15sp"
+                android:layout_marginTop="@dimen/_16sdp"
+                tools:text="Description" />
 
 
         </RelativeLayout>

@@ -32,8 +32,8 @@ class NewsDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        activity?.actionBar?.title = "Deal Details"
-        activity?.title = "Deal Details"
+        activity?.actionBar?.title = "News Application"
+        activity?.title = "News Application"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -68,8 +68,9 @@ class NewsDetailsFragment : Fragment() {
 
             binding.newsTitle.text = articles.title
             binding.newsImage.loadImage(articles.urlToImage)
+            binding.newsDescription.text = articles.content
+            binding.newsDate.text = articles.publishedAt
         }
-
     }
 
     companion object {
