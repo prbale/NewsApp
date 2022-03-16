@@ -50,7 +50,7 @@ class NewsFragment :
     private fun setup() {
 
         // Item click listener
-        adapter.setOnItemClickListener(onDealItemClickListener())
+        adapter.setOnItemClickListener(onNewsItemClickListener())
 
         // Observe
         viewModel.deals.observe(viewLifecycleOwner) { state -> handleState(state) }
@@ -67,12 +67,12 @@ class NewsFragment :
         }
     }
 
-    private fun onDealItemClickListener() = object : OnItemClickListener {
+    private fun onNewsItemClickListener() = object : OnItemClickListener {
         override fun onItemClick(item: Articles?) {
             item?.let {
                 addFragment(
                     NewsDetailsFragment.createInstance(it),
-                    R.id.nav_host_fragment_activity_main
+                    R.id.fragmentContainerView
                 )
             }
         }

@@ -15,4 +15,9 @@
     <string name="share_news">Share News</string>
     <string name="share_using">Share using</string>
     <string name="share_using_title">Share using..</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="category">Category</string>
+    <string name="favorite">Favorite</string>
 </resources>
