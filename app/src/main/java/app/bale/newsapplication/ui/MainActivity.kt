@@ -27,15 +27,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment?
         navController = navHostFragment!!.navController
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.newsFragment, R.id.categoryFragment, R.id.bookmarkedFragment))
+
         setupActionBarWithNavController(navController, appBarConfiguration)
+
         binding.navigationView.setupWithNavController(navController)
+
         NavigationUI.setupWithNavController(binding.navigationView, navController)
 
     }
 
+    // To enable back functionality on navigation bar
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }
