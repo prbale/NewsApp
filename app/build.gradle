@@ -115,6 +115,9 @@ dependencies {
     //pagination
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
+    // Extra
+    implementation 'com.github.marlonlom:timeago:4.0.3'
+
     // Testing
     testImplementation 'junit:junit:4.13.2'
     testImplementation "androidx.room:room-testing:$room_version"
