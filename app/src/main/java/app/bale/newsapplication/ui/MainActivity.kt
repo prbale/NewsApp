@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import app.bale.newsapplication.R
 import app.bale.newsapplication.databinding.ActivityMainBinding
+import app.bale.newsapplication.extension.addFragment
 import app.bale.newsapplication.extension.replaceFragment
 import app.bale.newsapplication.ui.newsList.NewsFragment
 
@@ -26,5 +27,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
-        replaceFragment(fragment, R.id.nav_host_fragment_activity_main)
+        addFragment(fragment, R.id.nav_host_fragment_activity_main)
 }

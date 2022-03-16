@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.newsapplication.data.model.Articles
 import app.bale.newsapplication.databinding.ItemBinding
+import app.bale.newsapplication.extension.loadImage
 import app.bale.newsapplication.listeners.OnItemClickListener
 
 class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
@@ -29,6 +30,8 @@ class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
         val newsItem = news[position]
 
         holder.binding.apply {
+
+            newsImage.loadImage(newsItem.urlToImage)
             newsTitle.text = newsItem.title
 
             root.setOnClickListener {

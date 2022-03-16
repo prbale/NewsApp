@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import app.bale.newsapplication.data.model.Articles
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.dependencyinjection.module.viewmodel.ViewModelFactory
+import app.bale.newsapplication.extension.loadImage
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -66,7 +67,7 @@ class NewsDetailsFragment : Fragment() {
         binding?.let { binding ->
 
             binding.newsTitle.text = articles.title
-
+            binding.newsImage.loadImage(articles.urlToImage)
         }
 
     }
