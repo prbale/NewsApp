@@ -85,11 +85,15 @@
                 android:textSize="15sp"
                 tools:text="Description" />
 
-
         </RelativeLayout>
-
     </LinearLayout>
 
+    <Button
+        android:id="@+id/readFullNewsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/read_full_news"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

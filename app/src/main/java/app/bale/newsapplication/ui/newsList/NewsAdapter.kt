@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.newsapplication.data.model.Articles
 import app.bale.newsapplication.databinding.ItemBinding
+import app.bale.newsapplication.extension.dateTimeAgo
 import app.bale.newsapplication.extension.loadImage
 import app.bale.newsapplication.listeners.OnItemClickListener
 import com.github.marlonlom.utilities.timeago.TimeAgo
@@ -38,20 +39,13 @@ class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
             newsImage.loadImage(newsItem.urlToImage)
             newsTitle.text = newsItem.title
-            newsDate.text = newsItem.publishedAt?.let { dateTimeAgo(it) }
+            newsDate.text = newsItem.publishedAt?.dateTimeAgo()
             newsDescription.text = newsItem.description
             root.setOnClickListener {
                 listener?.onItemClick(newsItem)
             }
         }
 
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun dateTimeAgo(date: String): String {
-        val instant = Instant.parse(date)
-        val ms = instant.toEpochMilli()
-        return TimeAgo.using(ms).replaceFirstChar { it.uppercaseChar() }
     }
 
     override fun getItemCount(): Int = news.size
