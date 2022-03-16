@@ -8,19 +8,23 @@
     <fragment
         android:id="@+id/newsFragment"
         android:name="app.bale.newsapplication.ui.newsList.NewsFragment"
-        android:label="NewsFragment" />
+        android:label="News">
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
         android:name="app.bale.newsapplication.ui.newsDetails.NewsDetailsFragment"
-        android:label="NewsDetailsFragment" />
+        android:label="News Details" />
     <fragment
         android:id="@+id/categoryFragment"
         android:name="app.bale.newsapplication.ui.category.CategoryFragment"
-        android:label="fragment_category"
+        android:label="News Categories"
         tools:layout="@layout/fragment_category" />
     <fragment
         android:id="@+id/bookmarkedFragment"
         android:name="app.bale.newsapplication.ui.bookmarked.BookmarkedFragment"
-        android:label="fragment_bookmarked"
+        android:label="Bookmarked News"
         tools:layout="@layout/fragment_bookmarked" />
 </navigation>

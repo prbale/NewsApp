@@ -26,6 +26,8 @@ class NewsDetailsFragment : Fragment() {
 
     lateinit var dealDetailsViewModel: NewsDetailsViewModel
 
+    lateinit var article: Articles
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -39,18 +41,7 @@ class NewsDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        activity?.actionBar?.title = "News Application"
-        activity?.title = "News Application"
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                activity?.supportFragmentManager?.popBackStack()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
+        article = requireArguments().getParcelable<Articles>("ARTICLE") as Articles
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -65,8 +56,7 @@ class NewsDetailsFragment : Fragment() {
         binding = FragmentNewsDetailsBinding.inflate(inflater)
         val root: View = binding!!.root
 
-        val news: Articles = arguments?.getParcelable<Articles>("ARTICLE") as Articles
-        displayDealDetails(news)
+        displayDealDetails(article)
 
         return root
     }
@@ -89,16 +79,4 @@ class NewsDetailsFragment : Fragment() {
             }
         }
     }
-
-    companion object {
-        fun createInstance(articles: Articles): NewsDetailsFragment {
-            val fragment = NewsDetailsFragment()
-            val bundle = Bundle().apply {
-                putParcelable("ARTICLE", articles)
-            }
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
-
 }

@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.bale.newsapplication.R
 import app.bale.newsapplication.data.model.Articles
@@ -29,6 +32,8 @@ class NewsFragment :
     override val layoutRes: Int
         get() = R.layout.fragment_news
 
+    lateinit var navController: NavController
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,15 +44,18 @@ class NewsFragment :
             it.adapter = adapter
             it.layoutManager = LinearLayoutManager(requireContext())
         }
+
         return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setup()
+        setup(view)
     }
 
-    private fun setup() {
+    private fun setup(view: View) {
+
+        navController = Navigation.findNavController(view)
 
         // Item click listener
         adapter.setOnItemClickListener(onNewsItemClickListener())
@@ -70,10 +78,10 @@ class NewsFragment :
     private fun onNewsItemClickListener() = object : OnItemClickListener {
         override fun onItemClick(item: Articles?) {
             item?.let {
-                addFragment(
-                    NewsDetailsFragment.createInstance(it),
-                    R.id.fragmentContainerView
-                )
+                val bundle = bundleOf("ARTICLE" to it)
+                navController.navigate(
+                    R.id.action_newsFragment_to_newsDetailsFragment,
+                    bundle)
             }
         }
     }
