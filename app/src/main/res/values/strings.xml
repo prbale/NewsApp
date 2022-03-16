@@ -11,4 +11,8 @@
     <string name="deal_details_title">Deal Details</string>
     <string name="profile_title">Profile</string>
     <string name="read_full_news">Read full news</string>
+    <string name="banner_image">Banner Image</string>
+    <string name="share_news">Share News</string>
+    <string name="share_using">Share using</string>
+    <string name="share_using_title">Share using..</string>
 </resources>

@@ -13,12 +13,14 @@ import androidx.lifecycle.ViewModelProvider
 import app.bale.newsapplication.data.model.Articles
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.dependencyinjection.module.viewmodel.ViewModelFactory
-import app.bale.newsapplication.extension.covertTimeToText
-import app.bale.newsapplication.extension.dateTimeAgo
-import app.bale.newsapplication.extension.launchWebsite
-import app.bale.newsapplication.extension.loadImage
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
+import android.R
+
+import android.content.Intent
+import app.bale.newsapplication.extension.*
+import app.bale.newsapplication.ui.base.BaseActivity
+
 
 class NewsDetailsFragment : Fragment() {
 
@@ -79,6 +81,11 @@ class NewsDetailsFragment : Fragment() {
             binding.newsDate.text = articles.publishedAt?.dateTimeAgo()
             binding.readFullNewsBtn.setOnClickListener {
                 articles.url?.let { it1 -> context?.launchWebsite(it1) }
+            }
+            binding.shareNews.setOnClickListener {
+                articles.url?.let { data ->
+                    context?.shareContent(data)
+                }
             }
         }
     }

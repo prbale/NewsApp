@@ -1,5 +1,6 @@
 package app.bale.newsapplication.extension
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
@@ -26,3 +27,14 @@ fun AppCompatActivity.showMessage(message: String, duration: Int = Toast.LENGTH_
     Toast.makeText(this, message, duration).show()
 }
 
+fun Context.shareContent(data: String) {
+    val shareBody = "$data\nI would like to share this with you."
+    val sharingIntent = Intent(Intent.ACTION_SEND)
+    sharingIntent.type = "text/plain"
+    sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+    startActivity(
+        Intent.createChooser(
+            sharingIntent, getString(R.string.share_using_title)
+        )
+    )
+}
