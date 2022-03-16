@@ -13,9 +13,9 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [NewsListModule::class])
-    abstract fun bindDealsFragment(): NewsFragment
+    abstract fun bindNewsFragment(): NewsFragment
 
     @ContributesAndroidInjector
-    abstract fun bindDealDetailsFragment(): NewsDetailsFragment
+    abstract fun bindNewsDetailsFragment(): NewsDetailsFragment
 
 }

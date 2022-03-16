@@ -5,10 +5,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="by_provider">By %1$s</string>
     <string name="amount">$ %1$s</string>
-    <string name="deal_image">Deal Image</string>
+    <string name="news_image">News Banner</string>
     <string name="email_support_error">There is no application that support this action</string>
-    <string name="deals_title">Deals</string>
-    <string name="deal_details_title">Deal Details</string>
+    <string name="news_title">News</string>
+    <string name="news_details_title">News Details</string>
     <string name="profile_title">Profile</string>
     <string name="read_full_news">Read full news</string>
     <string name="banner_image">Banner Image</string>

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/screen_bg_color"
-        tools:context=".ui.dealList.DealsFragment">
+        tools:context=".ui.MainActivity">
 
         <Button
             android:id="@+id/readFullNewsBtn"

@@ -19,8 +19,8 @@ class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
     private var listener: OnItemClickListener? = null
 
-    fun setDealsList(deals: List<Articles>) {
-        this.news = deals.toMutableList()
+    fun setArticlesList(articles: List<Articles>) {
+        this.news = articles.toMutableList()
         notifyDataSetChanged()
     }
 

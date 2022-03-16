@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -15,16 +14,13 @@ import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.dependencyinjection.module.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
-import android.R
 
-import android.content.Intent
 import app.bale.newsapplication.extension.*
-import app.bale.newsapplication.ui.base.BaseActivity
 
 
 class NewsDetailsFragment : Fragment() {
 
-    lateinit var dealDetailsViewModel: NewsDetailsViewModel
+    lateinit var newsDetailsViewModel: NewsDetailsViewModel
 
     lateinit var article: Articles
 
@@ -51,18 +47,18 @@ class NewsDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        dealDetailsViewModel = ViewModelProvider(this, viewModelFactory)[NewsDetailsViewModel::class.java]
+        newsDetailsViewModel = ViewModelProvider(this, viewModelFactory)[NewsDetailsViewModel::class.java]
 
         binding = FragmentNewsDetailsBinding.inflate(inflater)
         val root: View = binding!!.root
 
-        displayDealDetails(article)
+        displayNewsDetails(article)
 
         return root
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun displayDealDetails(articles: Articles) {
+    private fun displayNewsDetails(articles: Articles) {
         binding?.let { binding ->
 
             binding.newsTitle.text = articles.title

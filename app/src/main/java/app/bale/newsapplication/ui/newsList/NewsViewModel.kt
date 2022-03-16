@@ -14,20 +14,20 @@ import javax.inject.Inject
  */
 class NewsViewModel @Inject constructor(private val repository: NewsRepository) : BaseViewModel() {
 
-    val deals = MutableLiveData<Resource<NewsResponse>>()
+    val newsResponse = MutableLiveData<Resource<NewsResponse>>()
 
-    fun getAllDeals() {
+    fun getAllNews() {
 
         viewModelScope.launch {
 
-            deals.value = Resource.loading(null)
+            newsResponse.value = Resource.loading(null)
 
             try {
                 val data = repository.getAllNews()
-                deals.value = Resource.success(data)
+                newsResponse.value = Resource.success(data)
             }
             catch (error: Exception) {
-                deals.value = Resource.error(
+                newsResponse.value = Resource.error(
                     error.message ?: "An error has occurred !",
                     null)
             }

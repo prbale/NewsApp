@@ -14,12 +14,10 @@ import app.bale.newsapplication.data.model.NewsResponse
 import app.bale.newsapplication.data.util.Resource
 import app.bale.newsapplication.data.util.Status
 import app.bale.newsapplication.databinding.FragmentNewsBinding
-import app.bale.newsapplication.extension.addFragment
 import app.bale.newsapplication.extension.gone
 import app.bale.newsapplication.extension.showMessage
 import app.bale.newsapplication.extension.visible
 import app.bale.newsapplication.listeners.OnItemClickListener
-import app.bale.newsapplication.ui.newsDetails.NewsDetailsFragment
 import app.bale.newsapplication.ui.base.BaseFragment
 import javax.inject.Inject
 
@@ -61,10 +59,10 @@ class NewsFragment :
         adapter.setOnItemClickListener(onNewsItemClickListener())
 
         // Observe
-        viewModel.deals.observe(viewLifecycleOwner) { state -> handleState(state) }
+        viewModel.newsResponse.observe(viewLifecycleOwner) { state -> handleState(state) }
 
         // Trigger call
-        viewModel.getAllDeals()
+        viewModel.getAllNews()
     }
 
     private fun handleState(state: Resource<NewsResponse>) {
@@ -95,6 +93,6 @@ class NewsFragment :
 
     private fun loadNews(data: NewsResponse?) {
         dataBinding.loadingIndicator.gone()
-        data?.let { adapter.setDealsList(it.articles) }
+        data?.let { adapter.setArticlesList(it.articles) }
     }
 }
