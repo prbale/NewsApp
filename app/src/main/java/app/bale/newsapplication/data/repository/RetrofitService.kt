@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface RetrofitService {
 
     @GET("top-headlines")
-    suspend fun getAllNews() : NewsResponse
+    suspend fun getAllTopHeadLines() : NewsResponse
 }

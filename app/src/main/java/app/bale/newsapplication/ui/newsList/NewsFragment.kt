@@ -20,10 +20,7 @@ import app.bale.newsapplication.extension.visible
 import app.bale.newsapplication.listeners.OnItemClickListener
 import app.bale.newsapplication.ui.base.BaseFragment
 import javax.inject.Inject
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-import android.R.attr.name
-import android.R.attr.name
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 
 
@@ -70,14 +67,14 @@ class NewsFragment :
         viewModel.newsResponse.observe(viewLifecycleOwner) { state -> handleState(state) }
 
         // Trigger call
-        viewModel.getAllNews()
+        viewModel.getAllTopHeadLines()
     }
 
     private fun setPullToRefresh() {
         dataBinding.swipeRefreshLayout.setOnRefreshListener(OnRefreshListener {
             dataBinding.swipeRefreshLayout.isRefreshing = false
             // Trigger call
-            viewModel.getAllNews()
+            viewModel.getAllTopHeadLines()
         })
     }
 

@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class NewsRepository @Inject constructor(var retrofitService: RetrofitService) {
 
-    suspend fun getAllNews(): NewsResponse = retrofitService.getAllNews()
+    suspend fun getAllTopHeadLines(): NewsResponse = retrofitService.getAllTopHeadLines()
 }

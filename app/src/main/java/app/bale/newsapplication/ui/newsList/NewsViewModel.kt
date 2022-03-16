@@ -16,14 +16,14 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository) 
 
     val newsResponse = MutableLiveData<Resource<NewsResponse>>()
 
-    fun getAllNews() {
+    fun getAllTopHeadLines() {
 
         viewModelScope.launch {
 
             newsResponse.value = Resource.loading(null)
 
             try {
-                val data = repository.getAllNews()
+                val data = repository.getAllTopHeadLines()
                 newsResponse.value = Resource.success(data)
             }
             catch (error: Exception) {
