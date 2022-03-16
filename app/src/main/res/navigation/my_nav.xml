@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/newsFragment"
         android:name="app.bale.newsapplication.ui.newsList.NewsFragment"
-        android:label="News"
+        android:label="News - Top Headlines"
         tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/action_newsFragment_to_newsDetailsFragment"
