@@ -8,15 +8,22 @@
     <fragment
         android:id="@+id/newsFragment"
         android:name="app.bale.newsapplication.ui.newsList.NewsFragment"
-        android:label="News">
+        android:label="News"
+        tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/action_newsFragment_to_newsDetailsFragment"
-            app:destination="@id/newsDetailsFragment" />
+            app:destination="@id/newsDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
         android:name="app.bale.newsapplication.ui.newsDetails.NewsDetailsFragment"
-        android:label="News Details" />
+        android:label="News Details"
+        tools:layout="@layout/fragment_news_details"
+        />
     <fragment
         android:id="@+id/categoryFragment"
         android:name="app.bale.newsapplication.ui.category.CategoryFragment"
