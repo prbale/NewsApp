@@ -6,7 +6,7 @@
 
 **You can Install and test latest OnlyNews app from below 👇**
 
-[![News App](https://github.com/prbale/newsapp/tree/develop/artifacts/newsapp.apk)
+[![News App](https://github.com/prbale/newsapp/tree/develop/artifacts/newsapp.apk)]
 
 ## Screenshots 
 TODO
