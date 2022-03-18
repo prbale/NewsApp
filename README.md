@@ -10,7 +10,10 @@
 
 
 ## Screenshots 
-TODO
+<p align="center">
+<img src="artifacts/screenshot_1.png" width="235" height="500"/>
+<img src="artifacts/screenshot_2.png" width="235" height="500"/>
+</p>
 
 ## About
 
