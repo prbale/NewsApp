@@ -41,7 +41,8 @@ This app uses [MVVM (Model View View-Model)](https://developer.android.com/jetpa
 3) Add different news categories provided by newsapi.org 
 
 
-### Contributing and reporting issues
+
+## Contributing and reporting issues
 
 You can to contribute in this repository. Just make pull request.
 
