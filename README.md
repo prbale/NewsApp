@@ -16,7 +16,7 @@
 </p>
 
 
-### MAD Score
+## MAD Score
 
 <p float="left">
   <img src="https://github.com/prbale/NewsApp/blob/develop/artifacts/mad_card.png" width="600" hspace="40"/>
