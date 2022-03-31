@@ -15,6 +15,13 @@
 <img src="artifacts/screenshot_2.png" width="235" height="500"/>
 </p>
 
+
+### MAD Score
+
+<p float="left">
+  <img src="" width="600" hspace="40"/>
+</p>
+
 ## About
 
 It loads the news articles using [news api](https://newsapi.org/). Using retrofit we fetch all the json data provided by the api and display on the user screen.
