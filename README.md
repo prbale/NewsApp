@@ -42,8 +42,14 @@ This app uses [MVVM (Model View View-Model)](https://developer.android.com/jetpa
 
 ![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 
+## Future Scope
+1) Save News Functionality
+2) Schedule auto pull news 
+3) Add different news categories provided by newsapi.org 
 
-### Contributing and reporting issues
+
+
+## Contributing and reporting issues
 
 You can to contribute in this repository. Just make pull request.
 
