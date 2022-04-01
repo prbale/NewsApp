@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.databinding.ItemBinding
 import app.bale.newsapplication.extension.convertTime
 import app.bale.newsapplication.extension.loadImage
@@ -13,11 +13,11 @@ import app.bale.newsapplication.listeners.OnItemClickListener
 
 class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
-    private var news = mutableListOf<Articles>()
+    private var news = mutableListOf<Article>()
 
     private var listener: OnItemClickListener? = null
 
-    fun setArticlesList(articles: List<Articles>) {
+    fun setArticlesList(articles: List<Article>) {
         this.news = articles.toMutableList()
         notifyDataSetChanged()
     }

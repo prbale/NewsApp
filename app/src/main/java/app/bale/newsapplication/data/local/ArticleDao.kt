@@ -4,18 +4,18 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.Article
 
 @Dao
 interface ArticleDao {
 
     @Query("Select * from article")
-    fun getArticles(): List<Articles>
+    fun getArticles(): List<Article>
 
     @Insert
-    fun insertArticle(articles: Articles)
+    fun insertArticle(article: Article)
 
     @Delete
-    fun deleteArticle(articles: Articles)
+    fun deleteArticle(article: Article)
 
 }

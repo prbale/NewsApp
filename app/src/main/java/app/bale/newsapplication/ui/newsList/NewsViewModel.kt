@@ -2,7 +2,7 @@ package app.bale.newsapplication.ui.newsList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
 import app.bale.newsapplication.data.repository.NewsRepository
 import app.bale.newsapplication.data.util.Resource
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(private val repository: NewsRepository) : BaseViewModel() {
 
     val newsResponse = MutableLiveData<Resource<NewsResponse>>()
-    val bookmarkedResponse = MutableLiveData<Resource<List<Articles>>>()
+    val bookmarkedResponse = MutableLiveData<Resource<List<Article>>>()
 
     fun getAllTopHeadLines() {
 

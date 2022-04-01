@@ -1,7 +1,7 @@
 package app.bale.newsapplication.data.repository
 
 import app.bale.newsapplication.data.local.ArticleDao
-import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
 import javax.inject.Inject
 
@@ -9,11 +9,11 @@ class NewsRepository @Inject constructor(var retrofitService: RetrofitService, v
 
     suspend fun getAllTopHeadLines(): NewsResponse = retrofitService.getAllTopHeadLines()
 
-    fun bookmarkArticle(article: Articles) {
+    fun bookmarkArticle(article: Article) {
         articleDao.insertArticle(article)
     }
 
-    suspend fun getAllBookmarkedArticles(): List<Articles> {
+    suspend fun getAllBookmarkedArticles(): List<Article> {
         return articleDao.getArticles()
     }
 

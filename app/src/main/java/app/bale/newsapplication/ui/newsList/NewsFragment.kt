@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.bale.newsapplication.R
-import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
 import app.bale.newsapplication.data.util.Resource
 import app.bale.newsapplication.data.util.Status
@@ -87,7 +87,7 @@ class NewsFragment :
     }
 
     private fun onNewsItemClickListener() = object : OnItemClickListener {
-        override fun onItemClick(item: Articles?) {
+        override fun onItemClick(item: Article?) {
             item?.let {
                 val bundle = bundleOf("ARTICLE" to it)
                 navController.navigate(

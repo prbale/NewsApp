@@ -24,7 +24,7 @@
 
 ## About
 
-It loads the news articles using [news api](https://newsapi.org/). Using retrofit we fetch all the json data provided by the api and display on the user screen.
+It loads the news article using [news api](https://newsapi.org/). Using retrofit we fetch all the json data provided by the api and display on the user screen.
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - Programming language for Android development.

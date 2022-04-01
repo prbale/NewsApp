@@ -10,12 +10,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.bale.newsapplication.R
-import app.bale.newsapplication.data.model.Articles
-import app.bale.newsapplication.data.model.NewsResponse
+import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.util.Resource
 import app.bale.newsapplication.data.util.Status
 import app.bale.newsapplication.databinding.FragmentBookmarkedBinding
-import app.bale.newsapplication.databinding.FragmentNewsBinding
 import app.bale.newsapplication.extension.gone
 import app.bale.newsapplication.extension.showMessage
 import app.bale.newsapplication.extension.visible
@@ -25,11 +23,6 @@ import app.bale.newsapplication.ui.newsList.NewsAdapter
 import app.bale.newsapplication.ui.newsList.NewsViewModel
 import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BookmarkedFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BookmarkedFragment:
     BaseFragment<NewsViewModel, FragmentBookmarkedBinding>(NewsViewModel::class.java) {
 
@@ -74,7 +67,7 @@ class BookmarkedFragment:
         viewModel.getAllBookmarkedArticles()
     }
 
-    private fun handleState(state: Resource<List<Articles>>) {
+    private fun handleState(state: Resource<List<Article>>) {
         when (state.status) {
             Status.SUCCESS -> loadNews(state.data)
             Status.LOADING -> showLoading()
@@ -83,7 +76,7 @@ class BookmarkedFragment:
     }
 
     private fun onNewsItemClickListener() = object : OnItemClickListener {
-        override fun onItemClick(item: Articles?) {
+        override fun onItemClick(item: Article?) {
             item?.let {
                 val bundle = bundleOf("ARTICLE" to it)
                 navController.navigate(
@@ -100,7 +93,7 @@ class BookmarkedFragment:
 
     private fun showLoading() = dataBinding.loadingIndicator.visible()
 
-    private fun loadNews(data: List<Articles>?) {
+    private fun loadNews(data: List<Article>?) {
         dataBinding.loadingIndicator.gone()
         data?.let { adapter.setArticlesList(it) }
     }

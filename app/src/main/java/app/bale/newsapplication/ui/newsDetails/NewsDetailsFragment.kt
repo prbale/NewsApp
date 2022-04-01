@@ -6,24 +6,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import app.bale.newsapplication.R
-import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
-import app.bale.newsapplication.dependencyinjection.module.viewmodel.ViewModelFactory
 import app.bale.newsapplication.extension.*
 import app.bale.newsapplication.ui.base.BaseFragment
 import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
 
 
 class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetailsBinding>(NewsDetailsViewModel::class.java)  {
 
     lateinit var newsDetailsViewModel: NewsDetailsViewModel
 
-    lateinit var article: Articles
+    lateinit var article: Article
 
     private var binding: FragmentNewsDetailsBinding? = null
 
@@ -38,7 +35,7 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetai
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        article = requireArguments().getParcelable<Articles>("ARTICLE") as Articles
+        article = requireArguments().getParcelable<Article>("ARTICLE") as Article
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -59,28 +56,28 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetai
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun displayNewsDetails(articles: Articles) {
+    private fun displayNewsDetails(article: Article) {
         binding?.let { binding ->
 
-            binding.newsTitle.text = articles.title
-            binding.newsImage.loadImage(articles.urlToImage)
-            binding.newsDescription.text = articles.content.appendMore()
-            binding.newsSource.text = articles.source?.name ?: ""
-            binding.newsDate.text = articles.publishedAt?.convertTime(requireContext())
+            binding.newsTitle.text = article.title
+            binding.newsImage.loadImage(article.urlToImage)
+            binding.newsDescription.text = article.content.appendMore()
+            binding.newsSource.text = article.source?.name ?: ""
+            binding.newsDate.text = article.publishedAt?.convertTime(requireContext())
             binding.readFullNewsBtn.setOnClickListener {
-                articles.url?.let { it1 -> context?.launchWebsite(it1) }
+                article.url?.let { it1 -> context?.launchWebsite(it1) }
             }
-            binding.bookmarkNews.setOnClickListener { bookmarkArticle(articles) }
+            binding.bookmarkNews.setOnClickListener { bookmarkArticle(article) }
             binding.shareNews.setOnClickListener {
-                articles.url?.let { data ->
+                article.url?.let { data ->
                     context?.shareContent(data)
                 }
             }
         }
     }
 
-    private fun bookmarkArticle(articles: Articles) {
-        viewModel.bookmarkArticle(articles)
+    private fun bookmarkArticle(article: Article) {
+        viewModel.bookmarkArticle(article)
         showMessage("Bookmarked !!")
     }
 }

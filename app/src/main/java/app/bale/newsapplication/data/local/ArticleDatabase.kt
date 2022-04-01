@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.Article
 
 // UserDatabase represents database and contains the database holder and server the main access point for the underlying connection to your app's persisted, relational data.
 
 @Database(
-    entities = [Articles::class],
+    entities = [Article::class],
     version = 1,                // <- Database version
     exportSchema = true
 )
