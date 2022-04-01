@@ -7,11 +7,6 @@
         android:icon="@drawable/ic_home"/>
 
     <item
-        android:id="@+id/categoryFragment"
-        android:title="@string/category"
-        android:icon="@drawable/ic_category"/>
-
-    <item
         android:id="@+id/bookmarkedFragment"
         android:title="@string/favorite"
         android:icon="@drawable/ic_favorite"/>

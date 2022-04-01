@@ -63,8 +63,9 @@ class NewsDetailsFragment : Fragment() {
 
             binding.newsTitle.text = articles.title
             binding.newsImage.loadImage(articles.urlToImage)
-            binding.newsDescription.text = articles.content
-            binding.newsDate.text = articles.publishedAt?.convertTime(context!!)
+            binding.newsDescription.text = articles.content.appendMore()
+            binding.newsSource.text = articles.source?.name ?: ""
+            binding.newsDate.text = articles.publishedAt?.convertTime(requireContext())
             binding.readFullNewsBtn.setOnClickListener {
                 articles.url?.let { it1 -> context?.launchWebsite(it1) }
             }
@@ -76,3 +77,9 @@ class NewsDetailsFragment : Fragment() {
         }
     }
 }
+
+private fun String?.appendMore(): CharSequence = this?.let {
+        val result = this.substringAfter("[").substringBefore(']')
+        return this.replace("[$result]", " more...")
+    } ?: " more ..."
+

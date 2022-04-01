@@ -25,11 +25,6 @@
         tools:layout="@layout/fragment_news_details"
         />
     <fragment
-        android:id="@+id/categoryFragment"
-        android:name="app.bale.newsapplication.ui.category.CategoryFragment"
-        android:label="News Categories"
-        tools:layout="@layout/fragment_category" />
-    <fragment
         android:id="@+id/bookmarkedFragment"
         android:name="app.bale.newsapplication.ui.bookmarked.BookmarkedFragment"
         android:label="Bookmarked News"

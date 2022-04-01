@@ -85,17 +85,34 @@
                 android:src="@drawable/ic_share" />
 
             <TextView
-                android:id="@+id/newsDate"
-                android:layout_width="match_parent"
+                android:id="@+id/newsSource"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/shareNews"
                 android:gravity="center_vertical"
-                android:textSize="15sp"
                 android:textColor="#B4FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                tools:text="Source" />
+
+            <TextView
+                android:id="@+id/newsDate"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@+id/newsSource"
+                android:gravity="center_vertical"
+                android:textColor="#B4FFFFFF"
+                android:textSize="15sp"
                 tools:text="Date" />
+
+
         </RelativeLayout>
 
         <TextView

@@ -14,9 +14,6 @@ import app.bale.newsapplication.databinding.ActivityMainBinding
 import android.graphics.drawable.ColorDrawable
 
 
-
-
-
 /**
  * Not extended with BaseActivity as we don't need ViewModel for this activity
  */
@@ -33,8 +30,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment?
+
         navController = navHostFragment!!.navController
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.newsFragment, R.id.categoryFragment, R.id.bookmarkedFragment))
+
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.newsFragment, R.id.bookmarkedFragment))
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     // To enable back functionality on navigation bar
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp()
-    }
+    override fun onSupportNavigateUp() = navController.navigateUp()
+
 }
