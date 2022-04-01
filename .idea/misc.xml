@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/drawable/ic_favorite.xml" value="0.20416666666666666" />
+        <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/drawable/text.xml" value="0.20416666666666666" />
         <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/layout/fragment_bookmarked.xml" value="0.14628623188405798" />
         <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/layout/fragment_category.xml" value="0.14628623188405798" />
         <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/layout/fragment_news.xml" value="0.1" />
         <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/layout/fragment_news_details.xml" value="0.25" />
-        <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/layout/item.xml" value="0.42592592592592593" />
+        <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/layout/item.xml" value="0.41304347826086957" />
         <entry key="..\:/Coding/Android/NewsApplication/app/src/main/res/menu/nav_bar_menu.xml" value="0.5" />
       </map>
     </option>

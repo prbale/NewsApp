@@ -9,9 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/screen_bg_color"
+        android:background="@color/background"
         tools:context=".ui.MainActivity">
-
 
         <TextView
             android:id="@+id/text_home"

@@ -5,19 +5,17 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Paint
 import android.net.Uri
-import android.os.Build
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
+import app.bale.newsapplication.R
 import com.bumptech.glide.Glide
-import com.github.marlonlom.utilities.timeago.TimeAgo
-import java.text.ParseException
+import java.net.URLDecoder
+import java.net.URLEncoder
 import java.text.SimpleDateFormat
-import java.time.Instant
 import java.util.*
 import java.util.concurrent.TimeUnit
-
 
 fun View.visible() {
     this.visibility = View.VISIBLE
@@ -48,52 +46,52 @@ fun Context.launchWebsite(webUrl: String) {
 
 fun ImageView.loadImage(imageUrl: String?) = Glide.with(this.context).load(imageUrl).into(this)
 
-fun String.covertTimeToText(): String? {
-
-    var convTime: String? = null
-
-    var prefix: String = ""
-    val suffix: String = "Ago"
-
+fun String.convertTime(context: Context): String {
+    val date: String = this
+    val convertedTime: String
+    val suffix = context.resources.getString(R.string.ago)
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+    dateFormat.timeZone = TimeZone.getTimeZone("GMT")
+    var pasTime: Date? = null
     try {
-        val dateFormat: SimpleDateFormat  = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        val pasTime: Date = dateFormat.parse(this) as Date
-        val nowTime: Date = Date()
-        val dateDiff: Long  = nowTime.time - pasTime.time;
-
-        val second: Long = TimeUnit.MILLISECONDS.toSeconds(dateDiff);
-        val minute: Long = TimeUnit.MILLISECONDS.toMinutes(dateDiff);
-        val hour: Long   = TimeUnit.MILLISECONDS.toHours(dateDiff);
-        val day: Long  = TimeUnit.MILLISECONDS.toDays(dateDiff);
-
-        if (second < 60) {
-            convTime = "$second Seconds $suffix"
-        } else if (minute < 60) {
-            convTime = "$minute Minutes $suffix"
-        } else if (hour < 24) {
-            convTime = "$hour Hours $suffix"
-        } else if (day >= 7) {
-            if (day > 360) {
-                convTime = (day / 360).toString() + " Years " + suffix
-            } else if (day > 30) {
-                convTime = (day / 30).toString() + " Months " + suffix
-            } else {
-                convTime = (day / 7).toString() + " Week " + suffix
-            }
-        } else if (day < 7) {
-            convTime = "$day Days $suffix"
-        }
-
-    } catch (e: ParseException) {
-
+        pasTime = dateFormat.parse(date)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        Log.e("TAG", "convertLastTransactionTime: $e")
     }
-
-    return convTime
+    val nowTime = Date()
+    var dateDiff: Long = 0
+    if (pasTime != null) {
+        dateDiff = nowTime.time - pasTime.time
+    }
+    val second = TimeUnit.MILLISECONDS.toSeconds(dateDiff)
+    val minute = TimeUnit.MILLISECONDS.toMinutes(dateDiff)
+    val hour = TimeUnit.MILLISECONDS.toHours(dateDiff)
+    val day = TimeUnit.MILLISECONDS.toDays(dateDiff)
+    convertedTime = if (second < 60) {
+        if (second < 0) {
+            0.toString() + " " + context.resources.getString(R.string.seconds) + " " + suffix
+        } else {
+            second.toString() + " " + context.resources.getString(R.string.seconds) + " " + suffix
+        }
+    } else if (minute <= 60) {
+        minute.toString() + " " + context.resources.getString(R.string.minutes) + " " + suffix
+    } else if (hour < 24) {
+        hour.toString() + " " + context.resources.getString(R.string.hours) + " " + suffix
+    } else if (hour < 48) {
+        context.resources.getString(R.string.yesterday)
+    } else if (day >= 7) {
+        (day / 7).toString() + " " + context.resources.getString(R.string.week) + " " + suffix
+    } else {
+        day.toString() + " " + context.resources.getString(R.string.days) + " " + suffix
+    }
+    return convertedTime
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun String.dateTimeAgo(): String {
-    val instant = Instant.parse(this)
-    val ms = instant.toEpochMilli()
-    return TimeAgo.using(ms).replaceFirstChar { it.uppercaseChar() }
+fun String.encode(): String {
+    return URLEncoder.encode(this, "utf-8")
+}
+
+fun String.decode(): String {
+    return URLDecoder.decode(this, "utf-8")
 }

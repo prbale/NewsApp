@@ -7,11 +7,9 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.newsapplication.data.model.Articles
 import app.bale.newsapplication.databinding.ItemBinding
-import app.bale.newsapplication.extension.dateTimeAgo
+import app.bale.newsapplication.extension.convertTime
 import app.bale.newsapplication.extension.loadImage
 import app.bale.newsapplication.listeners.OnItemClickListener
-import com.github.marlonlom.utilities.timeago.TimeAgo
-import java.time.Instant
 
 class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
@@ -39,7 +37,7 @@ class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
             newsImage.loadImage(newsItem.urlToImage)
             newsTitle.text = newsItem.title
-            newsDate.text = newsItem.publishedAt?.dateTimeAgo()
+            newsDate.text = newsItem.publishedAt?.convertTime(newsDate.context)
             newsDescription.text = newsItem.description
             root.setOnClickListener {
                 listener?.onItemClick(newsItem)

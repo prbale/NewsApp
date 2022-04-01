@@ -6,14 +6,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/screen_bg_color"
+        android:background="@color/background"
         tools:context=".ui.MainActivity">
 
-        <Button
+        <TextView
             android:id="@+id/readFullNewsBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/card_background"
             android:text="@string/read_full_news"
+            android:gravity="center"
+            android:textSize="19sp"
+            android:padding="10dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
@@ -54,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:textSize="15sp"
+                    android:textColor="#B4FFFFFF"
                     tools:text="Description" />
 
             </RelativeLayout>
@@ -73,10 +79,10 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
-                android:contentDescription="@string/share_news"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/share_news"
                 android:scaleType="fitXY"
-                android:src="@mipmap/share" />
+                android:src="@drawable/ic_share" />
 
             <TextView
                 android:id="@+id/newsDate"
@@ -88,6 +94,7 @@
                 android:layout_toStartOf="@+id/shareNews"
                 android:gravity="center_vertical"
                 android:textSize="15sp"
+                android:textColor="#B4FFFFFF"
                 tools:text="Date" />
         </RelativeLayout>
 
@@ -101,6 +108,7 @@
             android:layout_marginEnd="16dp"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
