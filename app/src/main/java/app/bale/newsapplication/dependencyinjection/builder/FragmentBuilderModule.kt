@@ -1,5 +1,6 @@
 package app.bale.newsapplication.dependencyinjection.builder
 
+import app.bale.newsapplication.ui.bookmarked.BookmarkedFragment
 import app.bale.newsapplication.ui.newsDetails.NewsDetailsFragment
 import app.bale.newsapplication.ui.newsList.NewsFragment
 import app.bale.newsapplication.ui.newsList.NewsListModule
@@ -17,5 +18,8 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun bindNewsDetailsFragment(): NewsDetailsFragment
+
+    @ContributesAndroidInjector(modules = [NewsListModule::class])
+    abstract fun bindBookmarkedFragment(): BookmarkedFragment
 
 }

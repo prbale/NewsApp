@@ -28,5 +28,9 @@
         android:id="@+id/bookmarkedFragment"
         android:name="app.bale.newsapplication.ui.bookmarked.BookmarkedFragment"
         android:label="Bookmarked News"
-        tools:layout="@layout/fragment_bookmarked" />
+        tools:layout="@layout/fragment_bookmarked" >
+        <action
+            android:id="@+id/action_bookmarkedFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
 </navigation>

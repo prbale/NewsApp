@@ -3,6 +3,8 @@ package app.bale.newsapplication.dependencyinjection.module
 import android.app.Application
 import android.content.Context
 import app.bale.newsapplication.constants.ApiConstants
+import app.bale.newsapplication.data.local.ArticleDao
+import app.bale.newsapplication.data.local.ArticleDatabase
 import app.bale.newsapplication.data.repository.NewsRepository
 import app.bale.newsapplication.data.repository.RequestInterceptor
 import app.bale.newsapplication.data.repository.RetrofitService
@@ -54,6 +56,11 @@ internal class AppModule {
 
 
     @Provides
-    internal fun provideRepository(retrofitService: RetrofitService): NewsRepository =
-        NewsRepository(retrofitService)
+    internal fun provideArticleDao(application: Application): ArticleDao =
+        ArticleDatabase.getDatabase(application).articleDao()
+
+    @Provides
+    internal fun provideRepository(retrofitService: RetrofitService, articleDao: ArticleDao): NewsRepository =
+        NewsRepository(retrofitService, articleDao)
+
 }

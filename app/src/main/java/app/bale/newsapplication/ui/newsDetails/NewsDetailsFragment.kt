@@ -7,27 +7,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import app.bale.newsapplication.R
 import app.bale.newsapplication.data.model.Articles
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.dependencyinjection.module.viewmodel.ViewModelFactory
+import app.bale.newsapplication.extension.appendMore
+import app.bale.newsapplication.extension.convertTime
+import app.bale.newsapplication.extension.launchWebsite
+import app.bale.newsapplication.extension.loadImage
+import app.bale.newsapplication.ui.base.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-import app.bale.newsapplication.extension.*
 
-
-class NewsDetailsFragment : Fragment() {
+class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetailsBinding>(NewsDetailsViewModel::class.java)  {
 
     lateinit var newsDetailsViewModel: NewsDetailsViewModel
 
     lateinit var article: Articles
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
     private var binding: FragmentNewsDetailsBinding? = null
+
+    override val layoutRes: Int
+        get() = R.layout.fragment_news_details
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -71,15 +74,14 @@ class NewsDetailsFragment : Fragment() {
             }
             binding.shareNews.setOnClickListener {
                 articles.url?.let { data ->
-                    context?.shareContent(data)
+                    //context?.shareContent(data)
+                    bookmarkArticle(articles)
                 }
             }
         }
     }
+
+    private fun bookmarkArticle(articles: Articles) {
+        viewModel.bookmarkArticle(articles)
+    }
 }
-
-private fun String?.appendMore(): CharSequence = this?.let {
-        val result = this.substringAfter("[").substringBefore(']')
-        return this.replace("[$result]", " more...")
-    } ?: " more ..."
-

@@ -95,3 +95,9 @@ fun String.encode(): String {
 fun String.decode(): String {
     return URLDecoder.decode(this, "utf-8")
 }
+
+fun String?.appendMore(): CharSequence = this?.let {
+    val result = this.substringAfter("[").substringBefore(']')
+    return this.replace("[$result]", " more...")
+} ?: " more ..."
+

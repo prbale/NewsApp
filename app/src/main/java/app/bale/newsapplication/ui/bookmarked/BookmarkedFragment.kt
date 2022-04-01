@@ -1,60 +1,107 @@
 package app.bale.newsapplication.ui.bookmarked
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import app.bale.newsapplication.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import app.bale.newsapplication.data.model.Articles
+import app.bale.newsapplication.data.model.NewsResponse
+import app.bale.newsapplication.data.util.Resource
+import app.bale.newsapplication.data.util.Status
+import app.bale.newsapplication.databinding.FragmentBookmarkedBinding
+import app.bale.newsapplication.databinding.FragmentNewsBinding
+import app.bale.newsapplication.extension.gone
+import app.bale.newsapplication.extension.showMessage
+import app.bale.newsapplication.extension.visible
+import app.bale.newsapplication.listeners.OnItemClickListener
+import app.bale.newsapplication.ui.base.BaseFragment
+import app.bale.newsapplication.ui.newsList.NewsAdapter
+import app.bale.newsapplication.ui.newsList.NewsViewModel
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  * Use the [BookmarkedFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BookmarkedFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class BookmarkedFragment:
+    BaseFragment<NewsViewModel, FragmentBookmarkedBinding>(NewsViewModel::class.java) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    @Inject
+    internal lateinit var adapter: NewsAdapter
+
+    override val layoutRes: Int
+        get() = R.layout.fragment_bookmarked
+
+    lateinit var navController: NavController
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+        dataBinding.rvMain.also {
+            it.adapter = adapter
+            it.layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        return dataBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup(view)
+    }
+
+    private fun setup(view: View) {
+
+        navController = Navigation.findNavController(view)
+
+        // Item click listener
+        adapter.setOnItemClickListener(onNewsItemClickListener())
+
+        // Observe
+        viewModel.bookmarkedResponse.observe(viewLifecycleOwner) { state -> handleState(state) }
+
+        // Trigger call
+        viewModel.getAllBookmarkedArticles()
+    }
+
+    private fun handleState(state: Resource<List<Articles>>) {
+        when (state.status) {
+            Status.SUCCESS -> loadNews(state.data)
+            Status.LOADING -> showLoading()
+            Status.ERROR -> showError(state.message ?: "Something went wrong ¯\\_(ツ)_/¯")
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bookmarked, container, false)
+    private fun onNewsItemClickListener() = object : OnItemClickListener {
+        override fun onItemClick(item: Articles?) {
+            item?.let {
+                val bundle = bundleOf("ARTICLE" to it)
+                navController.navigate(
+                    R.id.action_bookmarkedFragment_to_newsDetailsFragment,
+                    bundle)
+            }
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BookmarkedFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BookmarkedFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun showError(errorMessage: String) {
+        dataBinding.loadingIndicator.gone()
+        showMessage(errorMessage)
+    }
+
+    private fun showLoading() = dataBinding.loadingIndicator.visible()
+
+    private fun loadNews(data: List<Articles>?) {
+        dataBinding.loadingIndicator.gone()
+        data?.let { adapter.setArticlesList(it) }
     }
 }
