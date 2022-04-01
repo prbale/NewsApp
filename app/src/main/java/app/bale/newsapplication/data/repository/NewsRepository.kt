@@ -13,7 +13,11 @@ class NewsRepository @Inject constructor(var retrofitService: RetrofitService, v
         articleDao.insertArticle(article)
     }
 
-    suspend fun getAllBookmarkedArticles(): List<Article> {
+    fun deleteBookmarkedArticle(article: Article) {
+        articleDao.deleteArticle(article)
+    }
+
+    fun getAllBookmarkedArticles(): List<Article> {
         return articleDao.getArticles()
     }
 

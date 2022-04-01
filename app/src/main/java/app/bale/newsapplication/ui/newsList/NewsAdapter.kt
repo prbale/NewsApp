@@ -48,6 +48,13 @@ class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
     override fun getItemCount(): Int = news.size
 
+    fun removeAt(position: Int, func: (Article) -> Unit) {
+        val article = news[position]
+        news.removeAt(position)
+        notifyItemRemoved(position)
+        func.invoke(article)
+    }
+
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
         listener = onItemClickListener
     }

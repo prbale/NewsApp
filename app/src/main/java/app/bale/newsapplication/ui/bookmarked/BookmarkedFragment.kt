@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import app.bale.newsapplication.R
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.util.Resource
@@ -45,7 +46,22 @@ class BookmarkedFragment:
             it.layoutManager = LinearLayoutManager(requireContext())
         }
 
+        deleteSwipeHandling()
+
         return dataBinding.root
+    }
+
+    private fun deleteSwipeHandling() {
+        val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = dataBinding.rvMain.adapter as NewsAdapter
+                adapter.removeAt(viewHolder.adapterPosition) { article ->
+                    viewModel.deleteBookmarkedArticle(article)
+                }
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(dataBinding.rvMain)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
