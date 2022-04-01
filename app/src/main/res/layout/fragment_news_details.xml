@@ -75,10 +75,20 @@
             app:layout_constraintTop_toBottomOf="@+id/newsTitle">
 
             <ImageView
-                android:id="@+id/shareNews"
+                android:id="@+id/bookmarkNews"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/share_news"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_bookmark" />
+
+            <ImageView
+                android:id="@+id/shareNews"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_toStartOf="@+id/bookmarkNews"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/share_news"
                 android:scaleType="fitXY"

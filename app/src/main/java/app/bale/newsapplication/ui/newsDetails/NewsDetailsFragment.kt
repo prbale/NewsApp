@@ -6,16 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import app.bale.newsapplication.R
 import app.bale.newsapplication.data.model.Articles
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.dependencyinjection.module.viewmodel.ViewModelFactory
-import app.bale.newsapplication.extension.appendMore
-import app.bale.newsapplication.extension.convertTime
-import app.bale.newsapplication.extension.launchWebsite
-import app.bale.newsapplication.extension.loadImage
+import app.bale.newsapplication.extension.*
 import app.bale.newsapplication.ui.base.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -72,10 +70,10 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetai
             binding.readFullNewsBtn.setOnClickListener {
                 articles.url?.let { it1 -> context?.launchWebsite(it1) }
             }
+            binding.bookmarkNews.setOnClickListener { bookmarkArticle(articles) }
             binding.shareNews.setOnClickListener {
                 articles.url?.let { data ->
-                    //context?.shareContent(data)
-                    bookmarkArticle(articles)
+                    context?.shareContent(data)
                 }
             }
         }
@@ -83,5 +81,6 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetai
 
     private fun bookmarkArticle(articles: Articles) {
         viewModel.bookmarkArticle(articles)
+        showMessage("Bookmarked !!")
     }
 }
