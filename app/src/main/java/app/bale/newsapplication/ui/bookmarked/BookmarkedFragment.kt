@@ -11,17 +11,20 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.newsapplication.R
+import app.bale.newsapplication.constants.AppConstants
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.util.Resource
 import app.bale.newsapplication.data.util.Status
 import app.bale.newsapplication.databinding.FragmentBookmarkedBinding
 import app.bale.newsapplication.extension.gone
+import app.bale.newsapplication.extension.md5Hash
 import app.bale.newsapplication.extension.showMessage
 import app.bale.newsapplication.extension.visible
 import app.bale.newsapplication.listeners.OnItemClickListener
 import app.bale.newsapplication.ui.base.BaseFragment
 import app.bale.newsapplication.ui.newsList.NewsAdapter
 import app.bale.newsapplication.ui.newsList.NewsViewModel
+import com.pixplicity.easyprefs.library.Prefs
 import javax.inject.Inject
 
 class BookmarkedFragment:
@@ -56,12 +59,31 @@ class BookmarkedFragment:
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val adapter = dataBinding.rvMain.adapter as NewsAdapter
                 adapter.removeAt(viewHolder.adapterPosition) { article ->
-                    viewModel.deleteBookmarkedArticle(article)
+                    deleteBookMark(article)
                 }
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(dataBinding.rvMain)
+    }
+
+    private fun deleteBookMark(article: Article) {
+        viewModel.deleteBookmarkedArticle(article)
+        deleteFromPreference(article)
+    }
+
+    private fun deleteFromPreference(article: Article) {
+
+        val list: Set<String> = Prefs.getOrderedStringSet(AppConstants.BOOKMARKED_PREF_KEY, setOf())
+
+        val hashSet = hashSetOf<String>()
+
+        list.forEach { e -> hashSet.add(e) }
+
+        article.title?.md5Hash()?.let { hashSet.remove(it) }
+
+        Prefs.putOrderedStringSet(AppConstants.BOOKMARKED_PREF_KEY, hashSet)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

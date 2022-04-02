@@ -21,4 +21,12 @@ class NewsRepository @Inject constructor(var retrofitService: RetrofitService, v
         return articleDao.getArticles()
     }
 
+    fun removeBookmarkedArticle(article: Article) {
+        getAllBookmarkedArticles().forEach { articleValue ->
+            if(article.title == articleValue.title) {
+                deleteBookmarkedArticle(articleValue)
+            }
+        }
+    }
+
 }

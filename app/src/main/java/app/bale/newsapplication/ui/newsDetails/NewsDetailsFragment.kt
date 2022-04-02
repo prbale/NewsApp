@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import app.bale.newsapplication.R
+import app.bale.newsapplication.constants.AppConstants
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.extension.*
 import app.bale.newsapplication.ui.base.BaseFragment
+import com.pixplicity.easyprefs.library.Prefs
 import dagger.android.support.AndroidSupportInjection
 
 
@@ -67,17 +69,33 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetai
             binding.readFullNewsBtn.setOnClickListener {
                 article.url?.let { it1 -> context?.launchWebsite(it1) }
             }
-            binding.bookmarkNews.setOnClickListener { bookmarkArticle(article) }
+            binding.bookmarkNews.setOnClickListener {
+                article.bookmarkArticle(
+                    onAdd = {
+                        viewModel.bookmarkArticle(article)
+                        binding.bookmarkNews.setBackgroundResource(R.drawable.ic_bookmark_filled)
+                        showMessage("Bookmarked Added !!")
+                    },
+                    onRemove = {
+                        viewModel.removeBookmarkArticle(article)
+                        binding.bookmarkNews.setBackgroundResource(R.drawable.ic_bookmark)
+                        showMessage("Bookmarked Removed !!")
+                    }
+                )
+            }
             binding.shareNews.setOnClickListener {
                 article.url?.let { data ->
                     context?.shareContent(data)
                 }
             }
         }
-    }
 
-    private fun bookmarkArticle(article: Article) {
-        viewModel.bookmarkArticle(article)
-        showMessage("Bookmarked !!")
+        // Check whether article is bookmarked.
+        if(article.checkBookmark()) {
+            binding?.bookmarkNews?.setBackgroundResource(R.drawable.ic_bookmark_filled)
+        } else {
+            binding?.bookmarkNews?.setBackgroundResource(R.drawable.ic_bookmark)
+        }
+
     }
 }

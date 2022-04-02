@@ -20,4 +20,10 @@ class NewsDetailsViewModel @Inject constructor(private val repository: NewsRepos
         }
     }
 
+    fun removeBookmarkArticle(article: Article) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.removeBookmarkedArticle(article)
+        }
+    }
+
 }

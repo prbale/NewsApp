@@ -30,7 +30,7 @@ abstract class ArticleDatabase: RoomDatabase() { // <- Add 'abstract' keyword an
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ArticleDatabase::class.java,
-                    "article_database"
+                    "article_db"
                 ).build()
                 INSTANCE = instance
                 return instance

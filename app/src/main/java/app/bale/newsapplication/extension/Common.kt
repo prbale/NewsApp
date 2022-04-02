@@ -10,9 +10,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import app.bale.newsapplication.R
+import app.bale.newsapplication.constants.AppConstants
+import app.bale.newsapplication.data.model.Article
 import com.bumptech.glide.Glide
+import com.pixplicity.easyprefs.library.Prefs
+import java.math.BigInteger
 import java.net.URLDecoder
 import java.net.URLEncoder
+import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -101,3 +106,61 @@ fun String?.appendMore(): CharSequence = this?.let {
     return this.replace("[$result]", " more...")
 } ?: " more ..."
 
+fun String.md5Hash(): String {
+    val md = MessageDigest.getInstance("MD5")
+    val bigInt = BigInteger(1, md.digest(this.toByteArray(Charsets.UTF_8)))
+    return String.format("%032x", bigInt)
+}
+
+
+/**
+ * Check article is bookmarked or not.
+ * return true if yes, else return false
+ */
+fun Article.checkBookmark(): Boolean {
+
+    val list: Set<String> = Prefs.getOrderedStringSet(AppConstants.BOOKMARKED_PREF_KEY, setOf())
+    val hashToCheck = this.title?.md5Hash() ?: ""
+
+    var result = false
+    run breaking@{
+        list.forEach { e ->
+            if (hashToCheck == e) {
+                result = true
+                return@breaking
+            } else {
+                result = false
+            }
+        }
+    }
+    return result
+}
+
+
+fun Article.bookmarkArticle( onAdd: () -> Unit, onRemove: () -> Unit) {
+
+    if(this.checkBookmark()) {
+        onRemove.invoke()
+        updatePreference(false, this)
+    }
+    else {
+        onAdd.invoke()
+        updatePreference(true, this)
+    }
+}
+
+private fun updatePreference(isAddAction: Boolean, article: Article)  {
+
+    val list: Set<String> = Prefs.getOrderedStringSet(AppConstants.BOOKMARKED_PREF_KEY, setOf())
+
+    val hashSet = hashSetOf<String>()
+
+    list.forEach { e -> hashSet.add(e) }
+
+    article.title?.md5Hash()?.let {
+        if(isAddAction) hashSet.add(it)
+        else hashSet.remove(it)
+    }
+
+    Prefs.putOrderedStringSet(AppConstants.BOOKMARKED_PREF_KEY, hashSet)
+}
