@@ -3,6 +3,7 @@ package app.bale.newsapplication.dependencyinjection.module.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import app.bale.newsapplication.ui.newsDetails.NewsDetailsViewModel
+import app.bale.newsapplication.ui.bookmarked.BookmarkedNewsViewModel
 import app.bale.newsapplication.ui.newsList.NewsViewModel
 
 import dagger.Binds
@@ -19,6 +20,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewsViewModel::class)
     internal abstract fun bindNewsViewModel(viewModel: NewsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BookmarkedNewsViewModel::class)
+    internal abstract fun bindBookmarkedNewsViewModel(viewModel: BookmarkedNewsViewModel): ViewModel
 
     @Binds
     @IntoMap

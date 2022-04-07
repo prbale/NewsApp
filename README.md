@@ -43,12 +43,16 @@ This app uses [MVVM (Model View View-Model)](https://developer.android.com/jetpa
 
 ![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 
-## Future Scope
-1) Save News Functionality
-2) Schedule auto pull news 
-3) Add different news categories provided by newsapi.org 
+## Feature
 
-
+- [x] News list and detail view when pressing a piece of news.
+- [ ] Local Storage of news
+- [x] Bookmark News Articles
+- [x] Hyperlink to original article
+- [x] UI Design
+- [ ] News Pagination
+- [ ] Searching
+- [ ] Different category support provided by NewsApi.org
 
 ## Contributing and reporting issues
 

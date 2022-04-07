@@ -4,6 +4,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.databinding.ItemBinding
@@ -11,7 +12,7 @@ import app.bale.newsapplication.extension.convertTime
 import app.bale.newsapplication.extension.loadImage
 import app.bale.newsapplication.listeners.OnItemClickListener
 
-class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
+class NewsAdapter: PagingDataAdapter<Article, MainViewHolder>(DiffUtilCallback) {
 
     private var news = mutableListOf<Article>()
 

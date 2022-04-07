@@ -23,12 +23,11 @@ import app.bale.newsapplication.extension.visible
 import app.bale.newsapplication.listeners.OnItemClickListener
 import app.bale.newsapplication.ui.base.BaseFragment
 import app.bale.newsapplication.ui.newsList.NewsAdapter
-import app.bale.newsapplication.ui.newsList.NewsViewModel
 import com.pixplicity.easyprefs.library.Prefs
 import javax.inject.Inject
 
 class BookmarkedFragment:
-    BaseFragment<NewsViewModel, FragmentBookmarkedBinding>(NewsViewModel::class.java) {
+    BaseFragment<BookmarkedNewsViewModel, FragmentBookmarkedBinding>(BookmarkedNewsViewModel::class.java) {
 
     @Inject
     internal lateinit var adapter: NewsAdapter

@@ -46,7 +46,7 @@ dependencies {
     def lifecycle_version   = "2.1.0"
     def work_version        = "2.2.0"
     def lottieVersion       = "3.1.0"
-    def paging_version      = "2.1.0"
+    def paging_version      = "3.0.0-alpha13"
     def rxJavaVersion       = '2.0.1'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -113,7 +113,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     //pagination
-    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
 
     // Extra
     implementation 'com.github.marlonlom:timeago:4.0.3'

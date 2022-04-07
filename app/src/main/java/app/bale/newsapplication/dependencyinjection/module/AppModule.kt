@@ -2,12 +2,14 @@ package app.bale.newsapplication.dependencyinjection.module
 
 import android.app.Application
 import android.content.Context
+import androidx.paging.DataSource
 import app.bale.newsapplication.constants.ApiConstants
 import app.bale.newsapplication.data.local.ArticleDao
 import app.bale.newsapplication.data.local.ArticleDatabase
+import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.repository.NewsRepository
 import app.bale.newsapplication.data.repository.RequestInterceptor
-import app.bale.newsapplication.data.repository.RetrofitService
+import app.bale.newsapplication.data.repository.NewsAPIService
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -16,6 +18,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -46,13 +49,13 @@ internal class AppModule {
 
     @Provides
     @Reusable
-    internal fun provideRetrofitService(okHttpClient: OkHttpClient): RetrofitService =
+    internal fun provideRetrofitService(okHttpClient: OkHttpClient): NewsAPIService =
         Retrofit.Builder()
             .baseUrl(ApiConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
-            .create(RetrofitService::class.java)
+            .create(NewsAPIService::class.java)
 
 
     @Provides
@@ -60,7 +63,7 @@ internal class AppModule {
         ArticleDatabase.getDatabase(application).articleDao()
 
     @Provides
-    internal fun provideRepository(retrofitService: RetrofitService, articleDao: ArticleDao): NewsRepository =
+    internal fun provideRepository(retrofitService: NewsAPIService, articleDao: ArticleDao): NewsRepository =
         NewsRepository(retrofitService, articleDao)
 
 }
