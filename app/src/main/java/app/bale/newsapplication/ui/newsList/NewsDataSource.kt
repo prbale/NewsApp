@@ -8,7 +8,7 @@ import app.bale.newsapplication.data.repository.NewsRepository
 private const val INITIAL_PAGE_KEY = 1
 
 class NewsDataSource(
-    private val newsService: NewsRepository,
+    private val newsService: NewsRepository
 ) : PagingSource<Int, Article>() {
 
     override fun getRefreshKey(state: PagingState<Int, Article>): Int? = state.anchorPosition
@@ -23,13 +23,13 @@ class NewsDataSource(
 
             val prevKey = if (nextPage == 1) null else nextPage - 1
 
-            return LoadResult.Page(
+            LoadResult.Page(
                 data = responseData,
                 prevKey = null,
                 nextKey = nextPage.plus(1)
             )
         } catch (e: Exception) {
-            return LoadResult.Error(e)
+            LoadResult.Error(e)
         }
     }
 
