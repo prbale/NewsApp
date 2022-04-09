@@ -16,7 +16,8 @@ import javax.inject.Inject
  */
 class NewsViewModel @Inject constructor(private val repository: NewsRepository) : BaseViewModel() {
 
-    val listData: Flow<PagingData<Article>> = Pager(PagingConfig(pageSize = 38),
+    val listData: Flow<PagingData<Article>> = Pager(
+        config = PagingConfig(pageSize = 38),
         pagingSourceFactory = { NewsDataSource(repository) }
     ).flow.cachedIn(viewModelScope)
 }
