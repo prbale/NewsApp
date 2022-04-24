@@ -10,8 +10,9 @@ import app.bale.newsapplication.databinding.ItemBinding
 import app.bale.newsapplication.extension.convertTime
 import app.bale.newsapplication.extension.loadImage
 import app.bale.newsapplication.listeners.OnItemClickListener
+import javax.inject.Inject
 
-class NewsAdapter: RecyclerView.Adapter<MainViewHolder>() {
+class NewsAdapter @Inject constructor(): RecyclerView.Adapter<MainViewHolder>() {
 
     private var news = mutableListOf<Article>()
 

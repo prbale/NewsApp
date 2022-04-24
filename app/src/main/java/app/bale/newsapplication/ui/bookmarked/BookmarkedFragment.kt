@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -25,10 +26,14 @@ import app.bale.newsapplication.ui.base.BaseFragment
 import app.bale.newsapplication.ui.newsList.NewsAdapter
 import app.bale.newsapplication.ui.newsList.NewsViewModel
 import com.pixplicity.easyprefs.library.Prefs
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class BookmarkedFragment:
-    BaseFragment<NewsViewModel, FragmentBookmarkedBinding>(NewsViewModel::class.java) {
+    BaseFragment<FragmentBookmarkedBinding>() {
+
+    val viewModel: NewsViewModel by viewModels()
 
     @Inject
     internal lateinit var adapter: NewsAdapter

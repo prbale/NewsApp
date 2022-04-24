@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import app.bale.newsapplication.R
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
@@ -19,16 +21,18 @@ import app.bale.newsapplication.extension.showMessage
 import app.bale.newsapplication.extension.visible
 import app.bale.newsapplication.listeners.OnItemClickListener
 import app.bale.newsapplication.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 
-
+@AndroidEntryPoint
 class NewsFragment :
-        BaseFragment<NewsViewModel, FragmentNewsBinding>(NewsViewModel::class.java) {
+        BaseFragment<FragmentNewsBinding>() {
 
     @Inject
     internal lateinit var adapter: NewsAdapter
+
+    val viewModel: NewsViewModel by viewModels()
 
     override val layoutRes: Int
         get() = R.layout.fragment_news

@@ -1,6 +1,5 @@
 package app.bale.newsapplication.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -11,12 +10,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import app.bale.newsapplication.R
 import app.bale.newsapplication.databinding.ActivityMainBinding
-import android.graphics.drawable.ColorDrawable
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
  * Not extended with BaseActivity as we don't need ViewModel for this activity
  */
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

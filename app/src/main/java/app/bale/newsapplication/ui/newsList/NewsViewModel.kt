@@ -14,6 +14,7 @@ import javax.inject.Inject
 /**
  * View Model for [NewsFragment]
  */
+@HiltViewModel
 class NewsViewModel @Inject constructor(private val repository: NewsRepository) : BaseViewModel() {
 
     val newsResponse = MutableLiveData<Resource<NewsResponse>>()

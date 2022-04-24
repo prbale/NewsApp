@@ -1,26 +1,23 @@
 package app.bale.newsapplication.ui.newsDetails
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import app.bale.newsapplication.R
-import app.bale.newsapplication.constants.AppConstants
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.extension.*
 import app.bale.newsapplication.ui.base.BaseFragment
-import com.pixplicity.easyprefs.library.Prefs
-import dagger.android.support.AndroidSupportInjection
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+class NewsDetailsFragment : BaseFragment<FragmentNewsDetailsBinding>()  {
 
-class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetailsBinding>(NewsDetailsViewModel::class.java)  {
-
-    lateinit var newsDetailsViewModel: NewsDetailsViewModel
+    val viewModel: NewsDetailsViewModel by viewModels()
 
     lateinit var article: Article
 
@@ -28,11 +25,6 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetai
 
     override val layoutRes: Int
         get() = R.layout.fragment_news_details
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +38,6 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel, FragmentNewsDetai
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        newsDetailsViewModel = ViewModelProvider(this, viewModelFactory)[NewsDetailsViewModel::class.java]
 
         binding = FragmentNewsDetailsBinding.inflate(inflater)
         val root: View = binding!!.root
