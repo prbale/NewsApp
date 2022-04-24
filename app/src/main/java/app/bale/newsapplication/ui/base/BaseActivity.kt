@@ -13,7 +13,6 @@ import javax.inject.Inject
 /**
  * Base class for all activities.
  */
-@AndroidEntryPoint
 abstract class BaseActivity<D: ViewDataBinding>()
         : AppCompatActivity() {
 

@@ -7,6 +7,7 @@ import app.bale.newsapplication.data.model.NewsResponse
 import app.bale.newsapplication.data.repository.NewsRepository
 import app.bale.newsapplication.data.util.Resource
 import app.bale.newsapplication.ui.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject

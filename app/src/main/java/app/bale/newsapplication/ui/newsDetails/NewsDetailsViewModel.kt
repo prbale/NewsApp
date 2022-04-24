@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.repository.NewsRepository
 import app.bale.newsapplication.ui.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -11,6 +12,7 @@ import javax.inject.Inject
 /**
  * View Model for [[NewsDetailsFragment]]
  */
+@HiltViewModel
 class NewsDetailsViewModel @Inject constructor(private val repository: NewsRepository) :
     BaseViewModel() {
 
