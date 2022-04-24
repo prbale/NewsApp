@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import app.bale.newsapplication.R
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
@@ -32,7 +31,7 @@ class NewsFragment :
     @Inject
     internal lateinit var adapter: NewsAdapter
 
-    val viewModel: NewsViewModel by viewModels()
+    private val viewModel: NewsViewModel by viewModels()
 
     override val layoutRes: Int
         get() = R.layout.fragment_news
@@ -75,11 +74,11 @@ class NewsFragment :
     }
 
     private fun setPullToRefresh() {
-        dataBinding.swipeRefreshLayout.setOnRefreshListener(OnRefreshListener {
+        dataBinding.swipeRefreshLayout.setOnRefreshListener {
             dataBinding.swipeRefreshLayout.isRefreshing = false
             // Trigger call
             viewModel.getAllTopHeadLines()
-        })
+        }
     }
 
     private fun handleState(state: Resource<NewsResponse>) {

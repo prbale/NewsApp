@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewsDetailsFragment : BaseFragment<FragmentNewsDetailsBinding>()  {
 
-    val viewModel: NewsDetailsViewModel by viewModels()
+    private val viewModel: NewsDetailsViewModel by viewModels()
 
     lateinit var article: Article
 

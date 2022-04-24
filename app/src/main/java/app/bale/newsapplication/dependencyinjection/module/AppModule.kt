@@ -6,12 +6,9 @@ import app.bale.newsapplication.data.local.ArticleDao
 import app.bale.newsapplication.data.local.ArticleDatabase
 import app.bale.newsapplication.data.repository.RequestInterceptor
 import app.bale.newsapplication.data.repository.RetrofitService
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,22 +1,21 @@
+@file:Suppress("SpellCheckingInspection")
+
 package app.bale.newsapplication.extension
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Paint
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import app.bale.newsapplication.R
 import app.bale.newsapplication.constants.AppConstants
 import app.bale.newsapplication.data.model.Article
 import com.bumptech.glide.Glide
 import com.pixplicity.easyprefs.library.Prefs
 import java.math.BigInteger
-import java.net.URLDecoder
-import java.net.URLEncoder
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,15 +29,7 @@ fun View.gone() {
     this.visibility = View.GONE
 }
 
-fun TextView.strikeThrough() {
-    this.paintFlags = this.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-}
-
-fun Context.callANumber(phoneNumber: String) {
-    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null))
-    this.startActivity(intent)
-}
-
+@SuppressLint("QueryPermissionsNeeded")
 fun Context.launchWebsite(webUrl: String) {
     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(webUrl))
     val packageManager = this.packageManager
@@ -51,6 +42,7 @@ fun Context.launchWebsite(webUrl: String) {
 
 fun ImageView.loadImage(imageUrl: String?) = Glide.with(this.context).load(imageUrl).into(this)
 
+@SuppressWarnings
 fun String.convertTime(context: Context): String {
     val date: String = this
     val convertedTime: String
@@ -91,14 +83,6 @@ fun String.convertTime(context: Context): String {
         day.toString() + " " + context.resources.getString(R.string.days) + " " + suffix
     }
     return convertedTime
-}
-
-fun String.encode(): String {
-    return URLEncoder.encode(this, "utf-8")
-}
-
-fun String.decode(): String {
-    return URLDecoder.decode(this, "utf-8")
 }
 
 fun String?.appendMore(): CharSequence = this?.let {

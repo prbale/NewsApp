@@ -5,16 +5,14 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
  * Base class for all activities.
  */
-abstract class BaseActivity<D: ViewDataBinding>()
-        : AppCompatActivity() {
+abstract class BaseActivity<D: ViewDataBinding>
+    : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

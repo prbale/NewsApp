@@ -5,7 +5,7 @@ import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
 import javax.inject.Inject
 
-class NewsRepository @Inject constructor(var retrofitService: RetrofitService, var articleDao: ArticleDao) {
+class NewsRepository @Inject constructor(private var retrofitService: RetrofitService, private var articleDao: ArticleDao) {
 
     suspend fun getAllTopHeadLines(): NewsResponse = retrofitService.getAllTopHeadLines()
 

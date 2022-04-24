@@ -1,5 +1,8 @@
+@file:Suppress("unused", "unused", "unused")
+
 package app.bale.newsapplication.extension
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.bale.newsapplication.R
 
+@SuppressLint("QueryPermissionsNeeded")
+@SuppressWarnings
 fun AppCompatActivity?.sendAnEmail(email: String) {
 
     val intent = Intent(Intent.ACTION_SENDTO).apply {

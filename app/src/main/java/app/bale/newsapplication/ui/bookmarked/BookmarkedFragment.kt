@@ -33,7 +33,7 @@ import javax.inject.Inject
 class BookmarkedFragment:
     BaseFragment<FragmentBookmarkedBinding>() {
 
-    val viewModel: NewsViewModel by viewModels()
+    private val viewModel: NewsViewModel by viewModels()
 
     @Inject
     internal lateinit var adapter: NewsAdapter

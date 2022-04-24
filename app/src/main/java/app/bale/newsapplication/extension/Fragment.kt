@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package app.bale.newsapplication.extension
 
 import android.widget.Toast
@@ -12,6 +14,7 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
     fragmentTransaction.commit()
 }
 
+@SuppressWarnings
 fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     supportFragmentManager.inTransaction {
         add(frameId, fragment)
@@ -19,6 +22,7 @@ fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, addToBacksta
     }
 }
 
+@SuppressWarnings
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     supportFragmentManager.inTransaction {
         replace(frameId, fragment)
@@ -26,6 +30,7 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, addToBac
     }
 }
 
+@SuppressWarnings
 fun Fragment.addFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     val currentFragment = this
     activity?.supportFragmentManager?.inTransaction {

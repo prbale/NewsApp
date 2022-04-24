@@ -8,9 +8,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseFragment<D : ViewDataBinding>() : Fragment() {
+abstract class BaseFragment<D : ViewDataBinding> : Fragment() {
 
     protected lateinit var dataBinding: D
 
