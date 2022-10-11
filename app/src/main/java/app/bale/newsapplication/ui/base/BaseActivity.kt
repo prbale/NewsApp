@@ -12,7 +12,8 @@ import javax.inject.Inject
 /**
  * Base class for all activities.
  */
-abstract class BaseActivity<V: ViewModel, D: ViewDataBinding>(private val mViewModelClass: Class<V>)
+abstract class BaseActivity<V: ViewModel, D: ViewDataBinding> (
+        private val mViewModelClass: Class<V> )
         : AppCompatActivity() {
 
     @Inject

@@ -23,7 +23,6 @@ import javax.inject.Inject
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 
-
 class NewsFragment :
         BaseFragment<NewsViewModel, FragmentNewsBinding>(NewsViewModel::class.java) {
 

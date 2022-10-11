@@ -14,18 +14,22 @@ import app.bale.newsapplication.data.model.Article
     exportSchema = true
 )
 abstract class ArticleDatabase: RoomDatabase() { // <- Add 'abstract' keyword and extends RoomDatabase
+
     abstract fun articleDao(): ArticleDao
 
     companion object {
+
         @Volatile
         private var INSTANCE: ArticleDatabase? = null
 
         fun getDatabase(context: Context): ArticleDatabase{
+
             val tempInstance = INSTANCE
 
             if (tempInstance != null) {
                 return tempInstance
             }
+
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
