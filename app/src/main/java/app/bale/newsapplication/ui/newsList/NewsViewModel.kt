@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
-import app.bale.newsapplication.data.repository.NewsRepository
 import app.bale.newsapplication.data.util.Resource
+import app.bale.newsapplication.domain.DeleteBookMarkedArticleUsecase
+import app.bale.newsapplication.domain.GetAllBookMarkedArticlesUsecase
+import app.bale.newsapplication.domain.TopHeadLinesUsecase
 import app.bale.newsapplication.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,7 +16,10 @@ import javax.inject.Inject
 /**
  * View Model for [NewsFragment]
  */
-class NewsViewModel @Inject constructor(private val repository: NewsRepository) : BaseViewModel() {
+class NewsViewModel @Inject constructor(
+    private val topHeadLinesUsecase: TopHeadLinesUsecase,
+    private val getAllBookMarkedArticlesUsecase: GetAllBookMarkedArticlesUsecase,
+    private val deleteBookMarkedArticleUsecase: DeleteBookMarkedArticleUsecase) : BaseViewModel() {
 
     val newsResponse = MutableLiveData<Resource<NewsResponse>>()
     val bookmarkedResponse = MutableLiveData<Resource<List<Article>>>()
@@ -26,7 +31,7 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository) 
             newsResponse.value = Resource.loading(null)
 
             try {
-                val data = repository.getAllTopHeadLines()
+                val data = topHeadLinesUsecase.getAllTopHeadLines()
                 newsResponse.value = Resource.success(data)
             }
             catch (error: Exception) {
@@ -44,7 +49,7 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository) 
             bookmarkedResponse.postValue( Resource.loading(null) )
 
             try {
-                val data = repository.getAllBookmarkedArticles()
+                val data = getAllBookMarkedArticlesUsecase.getAllBookMarkedArticlesUsecase()
 
                 bookmarkedResponse.postValue( Resource.success(data) )
             }
@@ -58,7 +63,7 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository) 
 
     fun deleteBookmarkedArticle(article: Article) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteBookmarkedArticle(article)
+            deleteBookMarkedArticleUsecase.deleteBookMakedArticle(article)
         }
     }
 
