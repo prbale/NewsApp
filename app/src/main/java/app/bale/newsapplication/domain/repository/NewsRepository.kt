@@ -1,8 +1,9 @@
-package app.bale.newsapplication.data.repository
+package app.bale.newsapplication.domain.repository
 
 import app.bale.newsapplication.data.local.ArticleDao
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
+import app.bale.newsapplication.data.repository.RetrofitService
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(

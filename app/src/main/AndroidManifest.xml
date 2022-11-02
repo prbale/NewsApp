@@ -15,7 +15,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         android:theme="@style/Theme.NewsApplication">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:label="@string/app_name"

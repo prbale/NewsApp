@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="app.bale.newsapplication.ui.newsList.NewsFragment"
+        android:name="app.bale.newsapplication.presentation.newsList.NewsFragment"
         android:label="News - Top Headlines"
         tools:layout="@layout/fragment_news">
         <action
@@ -20,13 +20,13 @@
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="app.bale.newsapplication.ui.newsDetails.NewsDetailsFragment"
+        android:name="app.bale.newsapplication.presentation.newsDetails.NewsDetailsFragment"
         android:label="News Details"
         tools:layout="@layout/fragment_news_details"
         />
     <fragment
         android:id="@+id/bookmarkedFragment"
-        android:name="app.bale.newsapplication.ui.bookmarked.BookmarkedFragment"
+        android:name="app.bale.newsapplication.presentation.bookmarked.BookmarkedFragment"
         android:label="Bookmarked News"
         tools:layout="@layout/fragment_bookmarked" >
         <action

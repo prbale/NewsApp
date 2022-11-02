@@ -1,6 +1,6 @@
 package app.bale.newsapplication.dependencyinjection.builder
 
-import app.bale.newsapplication.ui.MainActivity
+import app.bale.newsapplication.presentation.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

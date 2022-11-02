@@ -5,7 +5,7 @@ import android.content.Context
 import app.bale.newsapplication.constants.ApiConstants
 import app.bale.newsapplication.data.local.ArticleDao
 import app.bale.newsapplication.data.local.ArticleDatabase
-import app.bale.newsapplication.data.repository.NewsRepository
+import app.bale.newsapplication.domain.repository.NewsRepository
 import app.bale.newsapplication.data.repository.RequestInterceptor
 import app.bale.newsapplication.data.repository.RetrofitService
 import com.google.gson.Gson

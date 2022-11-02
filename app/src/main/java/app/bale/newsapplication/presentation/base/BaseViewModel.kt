@@ -1,4 +1,4 @@
-package app.bale.newsapplication.ui.base
+package app.bale.newsapplication.presentation.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

@@ -1,4 +1,4 @@
-package app.bale.newsapplication.ui.base
+package app.bale.newsapplication.presentation.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

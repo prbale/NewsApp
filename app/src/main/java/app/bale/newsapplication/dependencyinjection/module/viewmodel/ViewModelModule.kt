@@ -2,8 +2,8 @@ package app.bale.newsapplication.dependencyinjection.module.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import app.bale.newsapplication.ui.newsDetails.NewsDetailsViewModel
-import app.bale.newsapplication.ui.newsList.NewsViewModel
+import app.bale.newsapplication.presentation.newsDetails.NewsDetailsViewModel
+import app.bale.newsapplication.presentation.newsList.NewsViewModel
 
 import dagger.Binds
 import dagger.Module

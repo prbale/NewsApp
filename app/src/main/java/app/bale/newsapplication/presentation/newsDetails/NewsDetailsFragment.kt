@@ -1,4 +1,4 @@
-package app.bale.newsapplication.ui.newsDetails
+package app.bale.newsapplication.presentation.newsDetails
 
 import android.content.Context
 import android.os.Build
@@ -9,12 +9,10 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import app.bale.newsapplication.R
-import app.bale.newsapplication.constants.AppConstants
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.databinding.FragmentNewsDetailsBinding
 import app.bale.newsapplication.extension.*
-import app.bale.newsapplication.ui.base.BaseFragment
-import com.pixplicity.easyprefs.library.Prefs
+import app.bale.newsapplication.presentation.base.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 
 

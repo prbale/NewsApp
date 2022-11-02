@@ -1,14 +1,14 @@
-package app.bale.newsapplication.ui.newsList
+package app.bale.newsapplication.presentation.newsList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import app.bale.newsapplication.data.model.Article
 import app.bale.newsapplication.data.model.NewsResponse
 import app.bale.newsapplication.data.util.Resource
-import app.bale.newsapplication.domain.DeleteBookMarkedArticleUsecase
-import app.bale.newsapplication.domain.GetAllBookMarkedArticlesUsecase
-import app.bale.newsapplication.domain.TopHeadLinesUsecase
-import app.bale.newsapplication.ui.base.BaseViewModel
+import app.bale.newsapplication.domain.usecase.DeleteBookMarkedArticleUsecase
+import app.bale.newsapplication.domain.usecase.GetAllBookMarkedArticlesUsecase
+import app.bale.newsapplication.domain.usecase.TopHeadLinesUsecase
+import app.bale.newsapplication.presentation.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +19,8 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val topHeadLinesUsecase: TopHeadLinesUsecase,
     private val getAllBookMarkedArticlesUsecase: GetAllBookMarkedArticlesUsecase,
-    private val deleteBookMarkedArticleUsecase: DeleteBookMarkedArticleUsecase) : BaseViewModel() {
+    private val deleteBookMarkedArticleUsecase: DeleteBookMarkedArticleUsecase
+) : BaseViewModel() {
 
     val newsResponse = MutableLiveData<Resource<NewsResponse>>()
     val bookmarkedResponse = MutableLiveData<Resource<List<Article>>>()
@@ -63,7 +64,7 @@ class NewsViewModel @Inject constructor(
 
     fun deleteBookmarkedArticle(article: Article) {
         viewModelScope.launch(Dispatchers.IO) {
-            deleteBookMarkedArticleUsecase.deleteBookMakedArticle(article)
+            deleteBookMarkedArticleUsecase.deleteBookMarkedArticle(article)
         }
     }
 

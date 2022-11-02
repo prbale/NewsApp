@@ -1,6 +1,5 @@
-package app.bale.newsapplication.ui
+package app.bale.newsapplication.presentation
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -11,7 +10,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import app.bale.newsapplication.R
 import app.bale.newsapplication.databinding.ActivityMainBinding
-import android.graphics.drawable.ColorDrawable
 
 
 /**

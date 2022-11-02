@@ -1,8 +1,7 @@
-package app.bale.newsapplication.domain
+package app.bale.newsapplication.domain.usecase
 
 import app.bale.newsapplication.data.model.Article
-import app.bale.newsapplication.data.model.NewsResponse
-import app.bale.newsapplication.data.repository.NewsRepository
+import app.bale.newsapplication.domain.repository.NewsRepository
 import javax.inject.Inject
 
 class GetAllBookMarkedArticlesUsecase @Inject constructor(private val repository: NewsRepository)  {

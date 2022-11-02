@@ -1,4 +1,4 @@
-package app.bale.newsapplication.ui.newsList
+package app.bale.newsapplication.presentation.newsList
 
 import dagger.Module
 import dagger.Provides

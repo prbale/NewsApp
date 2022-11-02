@@ -1,9 +1,9 @@
-package app.bale.newsapplication.ui.newsDetails
+package app.bale.newsapplication.presentation.newsDetails
 
 import androidx.lifecycle.viewModelScope
 import app.bale.newsapplication.data.model.Article
-import app.bale.newsapplication.data.repository.NewsRepository
-import app.bale.newsapplication.ui.base.BaseViewModel
+import app.bale.newsapplication.domain.repository.NewsRepository
+import app.bale.newsapplication.presentation.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject

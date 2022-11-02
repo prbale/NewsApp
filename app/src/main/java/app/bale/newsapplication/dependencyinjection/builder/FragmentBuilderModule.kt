@@ -1,9 +1,9 @@
 package app.bale.newsapplication.dependencyinjection.builder
 
-import app.bale.newsapplication.ui.bookmarked.BookmarkedFragment
-import app.bale.newsapplication.ui.newsDetails.NewsDetailsFragment
-import app.bale.newsapplication.ui.newsList.NewsFragment
-import app.bale.newsapplication.ui.newsList.NewsListModule
+import app.bale.newsapplication.presentation.bookmarked.BookmarkedFragment
+import app.bale.newsapplication.presentation.newsDetails.NewsDetailsFragment
+import app.bale.newsapplication.presentation.newsList.NewsFragment
+import app.bale.newsapplication.presentation.newsList.NewsListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

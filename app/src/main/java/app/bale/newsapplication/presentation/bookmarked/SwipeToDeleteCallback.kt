@@ -1,4 +1,4 @@
-package app.bale.newsapplication.ui.bookmarked
+package app.bale.newsapplication.presentation.bookmarked
 
 
 import android.content.Context
